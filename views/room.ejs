@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../public/style.css" /> -->
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+    <script
+      defer
+      src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/e43f961077.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <link rel="stylesheet" href="/public/style.css" /> -->
+    <script src="script.js" defer></script>
+    <!-- wbc -->
+    <!-- <script src="whiteboard_script.js" defer></script> -->
+    <!-- ends -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  </head>
+  <body>
+    <div class="main">
+      <div class="main__left">
+        <div class="main__videos">
+          <div id="video-grid"></div>
+        </div>
+        <div class="main__controls">
+          <div class="main_controls_block">
+            <div
+              onclick="muteUnmute()"
+              class="main_controls_button main__mute_button"
+            >
+              <i class="fas fa-microphone"></i>
+              <span>Mute</span>
+            </div>
+            <div
+              onclick="playStop()"
+              class="main_controls_button main__video_button"
+            >
+              <i class="fas fa-video"></i>
+              <span>Stop Video</span>
+            </div>
+          </div>
+          <div class="main_controls_block">
+         
+            <div class="main_controls_button">
+              <i class="fas fa-user-friends"></i>
+              <span>Participants</span>
+            </div>
+            <div class="main_controls_button" onclick="showHideChat()">
+              <i class="fas fa-comment-alt"></i>
+              <span>Chat</span>
+            </div>
+
+            <!-- WBC -->
+            <div class="main_controls_button" onclick="openWhiteboard()">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>Whiteboard</span>
+            </div>
+
+            <!-- Ends here -->
+          </div>
+          <div class="main_controls_block">
+            <div class="main_controls_button">
+              <button
+                id="copy-button"
+                class="copy-button"
+                onclick="copyRoomID()"
+              >
+                Copy Room ID
+              </button>
+            </div>
+          </div>
+          <div class="main_controls_button" onclick="leaveMeet()">
+          
+            <i class="fas fa-phone-slash" style="color: #f90606"></i>
+              <span
+                class="material-icons"
+                style="font-size: 20px; color: red"
+              >
+                Leave
+              </span>
+        
+          </div>
+        </div>
+      </div>
+      <div class="main__right">
+        <div class="main__header">
+          <h6>Chat</h6>
+        </div>
+        <div class="main__chat_window">
+          <ul class="messages"></ul>
+        </div>
+        <div class="main__message_container">
+          <input
+            id="chat_message"
+            type="text"
+            placeholder="Type message here..."
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openWhiteboard() {
+        const roomID = "<%= roomId %>";
+        //window.location.href = `/whiteboard/${roomID}`;
+        window.open(`/whiteboard/${roomID}`, "_blank");
+      }
+      function copyRoomID() {
+        const roomID = "<%= roomId %>";
+        navigator.clipboard
+          .writeText(roomID)
+          .then(() => {
+            alert("Room ID copied to clipboard!");
+          })
+          .catch((error) => {
+            console.error("Failed to copy Room ID:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

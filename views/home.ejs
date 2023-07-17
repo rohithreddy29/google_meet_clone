@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Google Meet Clone</title>
+      </head>
+  <body>
+    <div class="banner">
+    <img class="logo" src="https://www.gstatic.com/meet/google_meet_horizontal_wordmark_2020q4_1x_icon_124_40_2373e79660dabbf194273d27aa7ee1f5.png"
+    alt aria-hidden="true" role="presentation" style ="width:124px; height:40px ">
+    <span class="gb_nd gb_ed" style=" color: #5f6368;
+    opacity: 1; display: inline-block;
+    font-family: Arial,sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+    padding-left: 8px;
+    position: relative;
+    top: -1.5px;
+    vertical-align: middle;">Meet</span>
+      <div class="main__home">
+      <!-- <div class="main__home__header">
+        <div class="main__welcome"> -->
+          <!-- <h1>Welcome!</h1> -->
+        <!-- </div>
+      </div> -->
+
+      <div class="main__body" style="display: flex; flex-direction: row-reverse;">
+        <div class="main__home__image">
+          <img src="assets/home.jpg" alt="meet-image" />
+        </div>
+        <div style="width: 100px;"></div>
+        <div style = "display: flex; flex-direction: column;">
+        <div class="main__about__text">
+          <h2>Premium video meetings free for everyone.</h2>
+          <p>
+          </br>
+            Click <strong>New meeting</strong> to start a new meeting with
+            people<br />
+            you want to meet with or Join an
+            <strong>existing meeting</strong> with a Room ID.
+            
+          </p>
+          
+        </div>
+
+        <div class="main__meeting">
+          <div class="new__meeting__button">
+            <form action="/room" method="POST">
+              <button type="submit">New Meeting</button>
+            </form>
+          </div>
+          <div class="main__join">
+            <form id="myForm" method="GET">
+              <input
+                type="text"
+                name="roomID"
+                placeholder="Enter Room ID"
+                required
+              />
+              <button type="submit">Join Room</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/e28dbf8b03.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    function newMeet(roomID) {
+      window.location.href = `/${roomID}`;
+    }
+    document
+    .getElementById("myForm")
+    .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const roomID = this.elements.roomID.value;
+          const redirectURL = `/${roomID}`;
+          window.location.href = redirectURL;
+        });
+  </script>
+</html>
